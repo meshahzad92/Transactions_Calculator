@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Total Profits</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            padding: 20px;
+        }
+        .form-container {
+            width: 50%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .form-container input, .form-container select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        .btn-submit {
+            width: 100%;
+            padding: 10px;
+            text-align: center;
+            background-color: #007BFF;
+            color: white;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn-submit:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Total Profit Calculation</h1>
+
+    <div class="form-container">
+        <form method="POST">
+            <label for="start_date">Start Date:</label>
+            <input type="date" id="start_date" name="start_date" required>
+
+            <label for="end_date">End Date:</label>
+            <input type="date" id="end_date" name="end_date" required>
+
+            <label for="person">Select Person:</label>
+            <select name="person" id="person" required>
+                <option value="sultan">Sultan</option>
+                <option value="shahzad">Shahzad</option>
+            </select>
+
+            <button type="submit" class="btn-submit">Get Total Profit</button>
+        </form>
+    </div>
+
+    <div class="result">
+        {% if total_profit is not none %}
+        <h3>Total Profit:</h3>
+        <p><strong>{{ total_profit }}</strong></p>
+        {% else %}
+        <p>No results found for the selected date range and person.</p>
+        {% endif %}
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction History</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            padding: 20px;
+        }
+        table {
+            width: 80%;
+            margin: 0 auto;
+            border-collapse: collapse;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+        td {
+            background-color: #f9f9f9;
+        }
+        .btn-back {
+            display: block;
+            width: 150px;
+            margin: 20px auto;
+            padding: 10px;
+            text-align: center;
+            background-color: #007BFF;
+            color: white;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .btn-back:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Transaction History</h1>
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Date</th> <!-- Added Date column -->
+            <th>Initial Dollars</th>
+            <th>Buy Rate</th>
+            <th>Dollars Left</th>
+            <th>Sell Dollars</th>
+            <th>Sell Rate</th>
+            <th>Sell Value</th>
+            <th>Buy Cost</th>
+            <th>Profit</th>
+            <th>Reserved Fee</th>
+            <th>Final Profit</th>
+            <th>Sultan's Share</th>
+            <th>Shahzad's Share</th> <!-- Display Shahzad's Share -->
+        </tr>
+        {% for transaction in transactions %}
+        <tr>
+            <td>{{ transaction[0] }}</td>
+            <td>{{ transaction[1] }}</td>
+            <td>{{ transaction[2] }}</td>
+            <td>{{ transaction[3] }}</td>
+            <td>{{ transaction[4] }}</td>
+            <td>{{ transaction[5] }}</td>
+            <td>{{ transaction[6] }}</td>
+            <td>{{ transaction[7] }}</td>
+            <td>{{ transaction[8] }}</td>
+            <td>{{ transaction[9] }}</td>
+            <td>{{ transaction[10] }}</td>
+            <td>{{ transaction[11] }}</td>
+            <td>{{ transaction[12] }}</td> <!-- Ensure this column corresponds to Shahzad's share -->
+            <td>{{ transaction[13] }}</td> <!-- Ensure this column corresponds to Shahzad's share -->
+
+        </tr>
+        {% endfor %}
+    </table>
+
+    <a href="/" class="btn-back">Back to Calculator</a>
+</body>
+</html>

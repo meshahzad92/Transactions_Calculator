@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dollar Transaction Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #007BFF;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            width: 60%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        label {
+            font-size: 16px;
+            margin-top: 10px;
+            display: block;
+        }
+        input[type="date"],
+        input[type="number"],
+        button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .results {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+        }
+        .results p {
+            font-size: 18px;
+            margin: 5px 0;
+        }
+        .results p strong {
+            color: #007BFF;
+        }
+        table {
+            width: 100%;
+            margin-top: 30px;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+        .action-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .action-buttons button {
+            width: 48%;
+        }
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: #555;
+            color: white;
+            text-align: center;
+            border-radius: 5px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%; /* Adjust for tooltip positioning */
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>💵 Dollar Transaction Calculator</h1>
+        <p>P2P-Merchants Sultan and Shahzad Record.</p>
+    </header>
+
+    <div class="container">
+        <form method="POST">
+            <label for="date">📅 Date:</label>
+            <input type="date" id="date" name="date" required>
+    
+            <label for="initial_dollars">💵 Initial Dollars:</label>
+            <input type="number" step="0.01" id="initial_dollars" name="initial_dollars" placeholder="Enter the initial dollar amount" required>
+    
+            <label for="buy_rate" class="tooltip">📉 Buy Rate of Dollars:
+                <span class="tooltiptext">Rate at which dollars were purchased</span>
+            </label>
+            <input type="number" step="0.01" name="buy_rate" placeholder="Enter the buy rate" required>
+
+            <label for="dollars_left" class="tooltip">📊 Dollars Left in Binance:
+                <span class="tooltiptext">Remaining dollars after transaction</span>
+            </label>
+            <input type="number" step="0.01" name="dollars_left" placeholder="Enter the dollars left" required>
+
+            <label for="sell_rate" class="tooltip">💵 Sell Rate of Dollars:
+                <span class="tooltiptext">Rate at which dollars were sold</span>
+            </label>
+            <input type="number" step="0.01" name="sell_rate" placeholder="Enter the sell rate" required>
+
+            <label for="reserved_fee" class="tooltip">💰 Reserved Fee (in dollars):
+                <span class="tooltiptext">Fee reserved for transaction</span>
+            </label>
+            <input type="number" step="0.01" name="reserved_fee" placeholder="Enter the reserved fee" required>
+
+            <button type="submit">Calculate</button>
+        </form>
+
+        {% if sell_dollars %}
+        <div class="results">
+            <h2>Transaction Results</h2>
+            <p><strong>Dollars Sold:</strong> {{ sell_dollars }}$</p>
+            <p><strong>Value from Selling Dollars:</strong> {{ sell_value }}rs</p>
+            <p><strong>Buy Cost:</strong> {{ buy_cost }}rs</p>
+            <p><strong>Profit:</strong> {{ profit }}rs</p>
+            <p><strong>Reserved Fee:</strong> {{ reserved_fee }}$</p>
+            <p><strong>Final Profit After Fees:</strong> {{ final_profit }}rs</p>
+            <p><strong>Sultan's Share (30%):</strong> {{ sultan_share }}rs</p>
+            <p><strong>Shahzad's Share (70%):</strong> {{ shahzad_share }}rs</p>
+        </div>
+        {% endif %}
+
+        <div class="action-buttons">
+            <button onclick="window.location.href='/view_transactions'">📂 View Database</button>
+            <button onclick="window.location.href='/total_profits'">📊 Total Profits</button>
+        </div>
+    </div>
+</body>
+</html>
